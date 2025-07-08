@@ -24,6 +24,16 @@ func getName() string {
 	return scanner.Text()
 }
 
+func isPalindrome(e string) bool {
+	var strlen = len(e)
+	for i := 0; i < strlen/2; i++ {
+		if e[i] != e[strlen-i-1] {
+			return false
+		}
+	}
+	return true
+}
+
 func main() {
 	name := getName()
 	fmt.Println(greeting(name))
@@ -40,13 +50,16 @@ func greeting(name string) string {
 		formattedName = formattedName[:21]
 	}
 
-	// note: formatted name is used to decide on greeting addons
+	// note: name is used to decide on greeting addons
 	sentence := "Hello, " + formattedName
 	if isCreator(name) {
 		sentence = sentence + " Thanks for creating me!"
 	}
 	if len(name) > 20 {
 		sentence = sentence + "... Wow, that name's too long for me!"
+	}
+	if isPalindrome(name) {
+		sentence = sentence + " Cool, a palindromic name!"
 	}
 
 	return sentence
