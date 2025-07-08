@@ -2,7 +2,8 @@ package main
 
 import "testing"
 
-var tests = []struct {
+// TODO: refactor struct with typedef
+var greetingTests = []struct {
 	name     string
 	expected string
 }{
@@ -19,10 +20,27 @@ var tests = []struct {
 }
 
 func TestGreeting(t *testing.T) {
-	for _, test := range tests {
+	for _, test := range greetingTests {
 		result := greeting(test.name)
 		if result != test.expected {
 			t.Errorf("incorrect greeting, for name %s: got %s, expected %s", test.name, result, test.expected)
+		}
+	}
+}
+
+var respondToNameTests = []struct {
+	name     string
+	expected string
+}{
+	{"", "Ok, no greeting for you"},
+	{"Pel B", "Hello, Pel B"},
+}
+
+func testRespondToName(t *testing.T) {
+	for _, test := range respondToNameTests {
+		result := respondToName(test.name)
+		if result != test.expected {
+			t.Errorf("incorrect response, for name %s: got %s, expected %s", test.name, result, test.expected)
 		}
 	}
 }
