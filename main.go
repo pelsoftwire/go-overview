@@ -1,15 +1,23 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-
-	"rsc.io/quote"
+	"os"
 )
 
-func main() {
-	fmt.Println(greeting())
+func getName() string {
+	scanner := bufio.NewScanner(os.Stdin)
+	fmt.Print("Enter your name: ")
+	scanner.Scan()
+	return scanner.Text()
 }
 
-func greeting() string {
-	return quote.Hello()
+func main() {
+	name := getName()
+	fmt.Println(greeting(name))
+}
+
+func greeting(name string) string {
+	return "Hello, " + name
 }
